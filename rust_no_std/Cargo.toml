@@ -1,0 +1,14 @@
+[package]
+name = "rust_no_std"
+version = "0.1.0"
+edition = "2021"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[dependencies]
+libc = { version = "0.2.108", default-features = false }
+libc-print = "0.1.17"
