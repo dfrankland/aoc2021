@@ -19,14 +19,14 @@ async fn main() -> Result<()> {
             let unit = unit_str.parse::<usize>()?;
             match command {
                 "forward" => {
-                  horizontal_position += unit;
-                  depth += aim * unit;
+                    horizontal_position += unit;
+                    depth += aim * unit;
                 }
                 "up" => {
-                  aim -= unit;
+                    aim -= unit;
                 }
                 "down" => {
-                  aim += unit;
+                    aim += unit;
                 }
                 _ => bail!("Unknown command"),
             }

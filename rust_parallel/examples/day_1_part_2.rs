@@ -1,4 +1,4 @@
-use anyhow::{Result, Error};
+use anyhow::{Error, Result};
 use tokio::{
     fs::File,
     io::{self, AsyncBufRead, AsyncBufReadExt, BufReader, Lines},
@@ -11,12 +11,16 @@ async fn main() -> Result<()> {
     let file = File::open(concat!(env!("CARGO_MANIFEST_DIR"), "/../inputs/day_1.csv")).await?;
     let file_reader = BufReader::new(file);
     let lines = file_reader.lines();
-    let mut lines_windows =
-        LinesWindows::<BufReader<File>, usize, Box<dyn Fn(String) -> Result<usize>>, WINDOW_SIZE>::new(
-            lines,
-            Box::new(|line: String| line.parse::<usize>().map_err(Error::msg)),
-        )
-        .await?;
+    let mut lines_windows = LinesWindows::<
+        BufReader<File>,
+        usize,
+        Box<dyn Fn(String) -> Result<usize>>,
+        WINDOW_SIZE,
+    >::new(
+        lines,
+        Box::new(|line: String| line.parse::<usize>().map_err(Error::msg)),
+    )
+    .await?;
 
     let mut increases: usize = 0;
 
